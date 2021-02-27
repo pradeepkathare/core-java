@@ -1,0 +1,377 @@
+
+int,float:4bytes
+object:4 bytes :becase object refernce is int and 4bytes
+double 8 bytes
+char 2bytes
+
+
+JVM NOTES BY DURGASOFT
+
+==========
+1: few more tutorial links:
+	(refer :https://www.geeksforgeeks.org/classloader-in-java/ 
+			https://www.baeldung.com/java-classloaders
+			
+Topics:
+1 : virtual machine
+		Types of virtual machine
+			Hardware Based vm
+			Application based vm
+		Basic Architecture of vm
+		Class Loader System
+			Loading
+			Linking
+			Initalization
+		Types of class Loader
+			Bootstrap class loader
+			Extension class loader
+			Application class loader
+		How class loader works
+		what is need of customized class loader
+		Pseudo code for customized class loader
+		
+2 : Memory
+		various areas of memory
+			Method Area
+			Heap Area
+			Stack Area
+			Pc register
+			Native method stacks
+		How to display heap memory statistics
+		How to set max and min heap size
+		
+3 : Execution Engine
+		1 :Interpretor
+		2 : JIT compiler
+		
+	JNI(java native interface)
+	complete architecture of jvm
+	class file structure
+=============================	
+JVM : it is software based machine which performs operations like hardware.
+	2 types of vm:
+		1 : Hardware/system based
+		2 : Application/process based
+	
+	Hardware based /system based vm (one hardware multiple vms ):it provides several logical system on same computer with strong isolation from each other.
+		i,e one one physical machine we are defining multiple logical machines.
+		main advantage of hardware based vms is Hardware resources sharing and improves and utilization of hardware resources.
+		example kvm(kernel based vm in linux system)
+		vm vare,zen and cloud computing etc.
+	
+	Application based/process based vms:This vms acts as run-time engines to run a particular programming language applications
+		example:jvm(java virtual machine acts as run time engine to run java based applications),pvm(parrot vm acts runtime engine used to run perl),
+		CLR(common language run time acts as run time engine to run .net based applications)
+
+JVM is part of jre and it is responsible to load and run java .class files
+
+Basic Architecture diagram of jvm (copy paste/refer diagram from java t point)
+=================================
+Class loaders : Takes .class as input and put/segrigate  into memory
+Memory Area : Will have .class files data
+Execution engine: it will read memory and responsible to run .class file.
+	Some time while running applications it will depend on native methods which will be in native method libraries. 
+	JNI(java native interface) will be responsible for providing native method libraries to execution engine
+
+Class loader : is responsible for following 3 activities
+			1)Loading : loading .class file stored in hard-disk to jvm memory that to particular to method area(draw diagram of page 1 jvm)
+			2)Linking : 
+			3)initialization
+			
+			Loading :Loading means reading .class files and store corresponding binary data in method area.
+					 For each .class file jvm will store corresponding information in method area
+						i,e:fully qualified name of class,fully qualified name of immediate class,method info,variable info,constructor info
+							modifiers info,constant pool info and etc.
+			After loading .class file immediately jvm will create an objects for loaded class on heap memory of type java.lang.Class
+			class Class Object can be used by programmer to get class level information like number of methods,method info,variables info,constructor info etc
+			For every loaded type class there will be only one class Class object will be created even though we are using class multiple times in our program.
+			Example:Employee class object created 2 times in program still loading and class object will be only one
+			Example :of creating class object and to see what info it stores just run in eclipse
+			In below program Employee class called multiple times only one class Class Object got created
+			
+package jvm.core_java;
+import java.lang.reflect.Method;
+
+public class TestJvmReflection {
+
+	public static void main(String[] args) throws ClassNotFoundException {
+		// TODO Auto-generated method stub
+		int count=0;
+		//important specify package names here forName loads class and creates the class Class Object
+		Class c=Class.forName("jvm.core_java.Employee"); //throws ClassNotFoundException
+		Method[] methods=c.getDeclaredMethods();
+		//displaying method names and count of number of methods
+		for(Method method:methods) {
+			count++;
+			System.out.println("methodName="+method.getName());
+		}
+		Employee e1= new Employee();
+		Employee e2 = new Employee();
+		Class c1=e1.getClass(); //reflection object
+		Class c2 =e1.getClass();
+		System.out.println("c1=Hashcode="+c1.hashCode());//same hashcode
+		System.out.println("c1=Hashcode="+c2.hashCode()); //same hashcode
+		System.out.println(c1==c2); //returns true
+		System.out.println("total Methods in Class:"+count);
+	}
+
+}
+
+class Employee{
+	int id;
+	String name;
+	public int getId() {
+		return id;
+	}
+	public String getName() {
+		return name;
+	}	 
+}
+			Linking :Linking consist of 3 activities 
+						a)verify 
+						b)prepare
+						c)resolve
+						
+					verify/verification:It is process of ensuring that binary representation of a class is structurally correct or not i,e 
+						jvm will check whether .class is generated by valid compiler or not i,e whether .class is formatted or not.
+						Internally ByteCodeverifier is responsible for this activity.
+						ByteCodeverifier is part of class loader subsystem.(because of this java is secure)
+						If verification fails then we will get run time exception saying java.lang.verfiy error
+						
+					Prepare/Preparation:In this process/phase,jvm will allocate memory for class level static variables and assign default values.
+						Origninal values will be assigned in intialization phase but here only default values will be assigned
+					
+					Resolve/resolvation:it is process of replacing symbolic names in our program with original memory references from method area.
+					class Test{
+					psvm(){
+					String s = new String("durga");
+					Student s1=new Student();
+					}
+					}
+				For aboveclass,class loader loads Test.class,String.class,Student.class and Object.class.
+				The names of this class are stored in ConstantPool of TestClass.
+				In resolvation phase,this names are replaced with original memory level references from method area
+					
+		Intialization :	In this phase,all static variables are assigned with original values and
+				static block will be executed from parent to child and from top to bottom
+		Note: While loading linking and initialization if any error occurs,then we will get run-time-exception saying java.lang.Linkage Error
+		
+	Types of class-loaders : class-loader subsystem contains 3 types of class loaders 
+	===================
+	1 : Bootstrap class loader/premordial class loader
+	2 : Extension class loader
+	3 : Application class loader/System class loader:An application or system class loader loads our own files in the classpath.
+	
+		Bootstrap class-loader:It is responsible to load core-java api classes i,e class present in rt.jar (JDK->JRE->lib->rt.jar)
+			JDK->JRE->lib is called boot-strap path.i,e bs class loader is responsible to load class from this path.
+			Bootstrap class-loader is by default available with every jvm.It is implemented in native languages like c/c++ and not in java.
+		
+		Extension class-loader:Is a child class of Bootstrap class-loader.Bootstrap class-loader->Extension class-loader
+			Extension class loader is responsible to load class from extension class path.(JDK->JRE->LIB->EXT->*.JAR)
+			Extension class-loader is implemented in java and corresponding .class file is sun.misc.Launcher$ExtClassLoader.class
+		
+		Application class-loader/System class-loader:Application class-loader is child class of Extension class-loader.
+			This class-loader is responsible to load class from applications class path.
+			It internally uses,environment variable class path.
+			Application class-loader is implemented in java and corresponding .class file is sun.misc.Launcher$AppClassLoader
+class printClassLoaders{
+	public void printClassLoaders() throws ClassNotFoundException {
+ 
+		System.out.println("Classloader of this class:"
+        + PrintClassLoader.class.getClassLoader());
+ 
+		System.out.println("Classloader of Logging:"
+        + Logging.class.getClassLoader());
+ 
+		System.out.println("Classloader of ArrayList:"
+        + ArrayList.class.getClassLoader()); //null considered as Bootstrapclass loader becuase it is not implemented in java i,e its native and no object
+	}
+	}
+	
+	How class loader works :refer diagram Delegation Model from below or any tutorial
+	===========
+	Note : In Delegation-model highest prior will be for parent,so if class is present in multiple path then most hiereachy loader will load first.
+	1 : Class-loader follows Delegation hiereachy principal/algo
+	2 : Whenever jvm come across some class,first it will check whether corresponding class file is loaded or not.
+		If it is already loaded in method area then jvm will consider that loaded class.
+		if it is not loaded then jvm request,class-loader subsystem to load that particular class
+		When class-loader subsystem,hand-overs the request to Application class-loader.
+		AppClassLoader delegates request to extension class-loader which in-turn delegates request to boot-strap class-loader.
+	3 : Request is in Bootstrap class-loader,so it will search in boot-strap class path,if its available then corresponding .class will be loaded by boot-strap class loader
+		If not available,boot-strap class-loader delegates request to Extension class-loader.
+		Extension class-loader will search in extension class path.If it is available then it will be loaded 
+		other wise extension classloader will delegates to application class-loader.It will search in application class path.If available it will be loaded otherWise
+		we will get run exception,saying no class-def found error/class not found exception (Interview difference between class-def and class not found)
+	
+	Customized class-loader:(diagram in notes)
+	===========
+		Need of Customized class-loader:Default class loaders will load .class files only once even though we are using multiple times that class in our program.
+			After loading that .class,if its modified that .class file then default class-loader will not load updted version of .class
+			because of .class file is available in method area.
+			we can resolve this problem by defining our own customized class-loader.
+			The advantage of the customized class-loader is we can control class loading mechanism based on our requirement.
+				for example:we can load .class file separately every-time/modified time so that updated version is available to our program(Application servers)
+	
+	How to define customized class loader:
+		(while developing web servers and application servers usually go for customized class loaders to customize class loading mechanism)
+	=================================
+		we can define our own custom class loader by extending java.lang.class-loader class 
+		class custloader extends class-loader{
+		
+			public void loadclass(String cname){
+				check for update and load it;
+			}
+		}
+		class client{
+		psvm (String args[]){
+		Dog d = new Dof();
+		custloader cl=new custloader();
+		cl.loadclass("DOG");
+		
+		}
+		}
+	What is need of class loader class:
+		we can use this class to define our own customized class loaders.Every class-loader in java should be child class of java.lang.class loader class.Either directly or inderctly
+		hence this class acts base class of all class-loaders
+		https://www.journaldev.com/349/java-classloader#java-custom-classloader-example
+
+Topic 2:
+Memory Management in jvm:
+===============
+		Whenever vm loads and run jvm program it needs memory to store several things like bytecode,objects,variables etc
+			Below are memory categorized as:
+				1 : Method area,heap area,stack,program-register and native method stack
+	
+			Method Area:class level data and static variables will be stored
+				For Every jvm there will be only one method area available.
+				Method area will be created at a time of jvm startup
+				Inside method area,class level binary data including static variables will be stored.
+				Constant pools of a class will be stored inside method area.
+				Method area can be accessed by multiple threads simultaneously.so not Threads safe4
+			
+			Heap Area:
+				For Every jvm there will be only one Heap area available.
+				Heap area will be created at a time of jvm startup.
+				Objects and corresponding instance variables will be stored in heap area.
+				Every array in java is object only hence arrays also will be stored in heap area.
+				Heap in not thread -safe because it can be accessed by multiple threads.
+				Heap is need  not be continuous
+				Heap memory is Finite memory we can set maximum and minimum heap size.i,e we can increase or decrease heap size based on our requirement
+				
+			A java application can communicate with jvm using runtime object
+				Runtime class present in java.lang package and its singleton class
+				we can create runtime object has follows
+					Runtime r = Runtime.getRuntime();
+			Once we get runtime object we can call the following methods on that object.
+				maxMemory():it return number of bytes of max memory allocated to heap.
+				totalmemory():it returns number of bytes of total memory allocated to heap.(inital memory)
+				freememory():it returns number of bytes of free memory present in the heap.
+				
+program to stats heap memory
+/*
+ * output in mb:
+ * Max memory:2708
+freeMemory:181
+totalMemory:184
+consumedMemory:2
+ */
+public class HeapDemo {
+
+	public static void main(String[] args) {
+		//output will be in bytes so convert to mb 
+		Runtime rt = Runtime.getRuntime();
+		System.out.println("Max memory:"+(rt.maxMemory()/(1024*1024)));
+		System.out.println("freeMemory:"+rt.freeMemory()/(1024*1024));
+		System.out.println("totalMemory:"+rt.totalMemory()/(1024*1024));
+		System.out.println("consumedMemory:"+(rt.totalMemory()-rt.freeMemory())/(1024*1024));
+	}
+
+}
+
+		How to set max and min heap sizes
+		=============
+				java -Xmx512m -->maxMemory increase
+				java -Xms64m ->minimumMemory
+				
+				
+				
+		STACK memory:
+		===========
+			for every thread jvm will create seperate stack at a time of thread creation.
+			Each and every method call performed by a thread  will be stored in corresponding in stack including local variables.
+			After completing a method execution ,a corresponsding stack entry will be removed f.
+			After completing all method calls,the stack will become empty and the empty stack will be destroyed by the jvm just before terminating thread.
+			Each entry in the stack is called stack frame or activation record
+			The data stored in the stack is available for the corresponding thread only.and not available to the remaining threads.hence this data is thread-safe.
+			
+			Stack frame structure:
+				Each stack frame contains 3 parts:
+					local variables array,operand,frame data
+			
+				local variable array:It contains all method parameters and local variables 
+					local variable array is memory array.and each array is of 4bytes
+					int,float and object reference occupy one entry in the array.values of double and long occupy 2 consuecutive entries in the array
+					byte,short and char arrays will be converted into int type before storing and occuping one slot
+					but the way of storing boolean values is varied from jvm to jvm.But most of the jvm follows one slot to boolean values
+				example:
+					public int m1(int i,double d,object o,float f){
+						
+					}
+				
+				Operand :(usually used to store intermediate values) jvm uses it as workspace.some instructions can push the values to operand stack and some instructions can pop values from operand stack.
+					and some instructions can perform required operations
+				Frame data:it contains all symbolic representation/references used/related to  that method.
+					It also contains references to exception table which provides corresponding catch block information in case of exceptions
+			
+			PC Register:(program counter registers)
+				Pc register :for every thread a seperate pc register will be created at a time of thread creation.
+				PC registers contains the address of current execution instruction.once instruction execution completes ,automatically pc register will be incremented 
+				to hold address of next instructions
+			
+			Native method stacks:
+				For every thread jvm will create a seperate native method stacks
+				All native method invoked by threads will be stored in the corresponsding native method stack
+				
+			Conclusion :
+				Method area and heap area are one per jvm and stack area,pc registers and native method stacks are per thread.
+				static variables will be stored in method area.
+				instance variables will be stored in heap area.
+				local variable will be stored in stack area
+				
+		JVM Execution Engine:
+		======================
+			This is the centeral component of jvm.
+			Execution engine is responsible to execute java .class files
+			Execution engine mainly contains 2 components
+				i) Interpreter
+				ii)jIT compiler
+				
+				Interpreter:It is responsible to read bytecode and interpret into machine-code(native-code) and execute that machine code line by line.
+					The problem with this is,it interprets everytime even same method invoked multiple times which reduces performance of the system.
+					To overcome this problem,sun people introduced jit compilers in 1.1 version
+				JIT :The main purposse of jit compiler is to improve performance.
+					Internally,jit compiler maintains seperate count for every method.
+					Whenever vm come across,any method call ,first method will be interpreted normally by the interpretor ang jit compiler increases corresponsding count.
+					This process will be continued for every method.Once if any method count reaches threshold-value then jit compiler identifies that ,whether method is repeated
+					used and such methods are called hotspot.
+					Immediately,jit compiles that method and convert/generates corresponding native-code/machine-code.Next time,if jvm come across that method call
+					then jvm uses native code directly and executes it.instead of interpreting once again.so thaat performance of the system will be improved.
+					Threshold count varies from jvm to jvm.
+					Some Advance jit compiler,will re-compile the code if count reaches threshold once again so more optimized machine code will generated
+					Profiler : Internally profiler,which is part of git compiler is responsible to identify hot-spots.
+				
+				Note :
+				=====Jvm interpretes total program atleast once.
+					jit compilation is applicable only for repeated methods not for all.
+					
+			JNI:java native interface:
+				jni acts as mediator for java method calls and corresponding native libraries i,e 
+				jni is responsible to provide information about native libraries to the jvm execution engine
+				native method lib holds native lib info
+
+		
+					
+			
+			
+		
+			

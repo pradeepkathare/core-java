@@ -1,0 +1,29 @@
+Design Pattern
+=======
+1: creational
+  
+   Singleton
+   factory
+   Abstract factory
+   Builder Pattern
+   Prototype
+   
+Singleton : my git
+factory from :telsuko you tube and my git notes
+Builder pattern : my git notes
+Abstract factory : factory of factory:It will relate/combine 2 factory class in to single factory..so for client code will get exposed with only one interface
+	example java t point
+Prototype : java t point
+
+Questions :
+=====
+
+
+2 : structural design pattern : 
+    ============
+	a)Adapter design pattern: say u have engine class which implements some 10 metods,but client needs only 2 metods
+	    we write 1 interface with those 2 methods and one wrapperclass(adapter class) to implement 2 methods.But internally this class should call engine class implementation
+		either creating object or just by extending(java t point)
+		
+	b)
+  

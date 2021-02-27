@@ -1,0 +1,102 @@
+https://docs.oracle.com/javase/tutorial/essential/concurrency/exinter.html
+http://tutorials.jenkov.com/java-concurrency/   (Threads multithreading concepts)
+http://tutorials.jenkov.com/java-util-concurrent/java-future.html  (questions)
+
+---class 4 Thread Pools--ExecutorFramework---
+
+ThreadPool : 
+1 : creating new  thread for every job may cause performance and memory problem.To overcome this we should go for threadpool.
+2 : ThreadPool is pool of already created threads ready to do our job.
+3 : Java 1.5 version introduces threadpool framework to implement threadpools.
+4 : ThreadPool framework is also known as executor framework.
+5 : we can create threadpool as follows : 
+	1 : ExecutorService executorService = Executor.newFixedThreadPool(3)
+	2 : we can submit runaable job by using submit method executorService.submit(job)
+	3 : we can shutdown executor service by using shutdown method executorService.shutdown()
+6 : It reduces to create more number of threads and save memory.12 threads task it allows to complete withn few threads
+7 : Example : while developing webservers and application server we can use thread-pool concept
+				All web-applications  ot  Appservers like tomcat
+				
+				
+	CALLABLE AND FUTURE : 
+	
+	1 : In case of Runnable job thread wont return anything after completing job.
+	2 : If a thread is required to return some result after exection then we should go for Callable
+	3 : Callable Interface contains only one method call 
+			signature : public Object call() throws Exception
+	4 : If we submit callable object to executor then after completing job of a thread.Thread returns an Object 
+		of the type Future.i,e Future Object can be used to reterive result from callable job.
+		
+		Difference between Runnable and Callable
+		
+		1 : Runnable hava only 1 method run where as Callable method has call
+		2 : Runnable will return void but Callable will return Object
+		3 : Runnable introduced in 1.0 and callable in 1.5
+		4 : If a thread not required to return anything after completing job then we should go for runnable.If a thread required to 
+				return something after completing job then we should go for Callable
+		5 : Within a run method if there is anychance of getting check-exception then we should handle only by try-catch.Because we caanot use throws 
+			keyword for run method.Inside or within call method if there is chance of getting checked exception.We are not required to handle 
+			any-exception because call method already throws exception
+		6 : Runnable interface is present in java.lang package .Callable interface is present in the java.util.concurrent package			 							 				
+
+---class 4 end--- 
+
+
+---class5 start --Thread Local
+
+1 : ThreadLocal class provides threadlocal variables
+2 : ThreadLocal class maintains values per thread bases
+3 : Each ThreadLocal object maintains seperate value like user id,Transaction Id and etc for each thread that access that object.
+4 : Thread can access its local value ,can manipulate its value and even can remove its value.
+5 : In every part of the code which is executed by the thread .we can access its local variable.
+
+example : 
+	consider servlet,which invokes some business method .we have requirement to generate 
+	a unique transaction id for each and every request and we have to pass this transaction-id
+	to the bussiness methods for this requirement we can use thread local to maintain a seperate
+	transaction id for every request.i,e for every thread.
+	
+	Note : ThreadLocal class introduced in 1.2 version and enhanced in 1.5 version
+			2 : ThreadLocal can be assosciated with thread scope.
+			3 : Total code which is executed by thread has accessed by thread local variable.
+			4 : Thread can access its own local variables and caanot access other threads local-variables
+			5 : once thread entered into dead state all its local variable are by default eligable for garabge collection
+			
+			Constructor :
+			ThreadLocal tl = new ThreadLocal(); - creates threadlocal variable
+			
+			methods : 
+			1 : Object get() : returns the value of threadlocal variable associated with current thread
+			2 : Object initalValue() : Returns initalValue of ThreadLocal varaible associated with current thread.The default it returns null.
+			To customize our own initalValue we have to override this method
+			3 : void set(Object newValue) : To set a new Value 
+			4 : Void remove() : To remove the value of threadLocal variable associated with current thread.
+								It is newly added method in 1.5 version.After removal if we are trying to access it will be re-initalized once again to null by invlokng initalValue method
+			5 : Overriding of inital value method see example.
+			6 : 							
+---class 5 end---
+
+
+New concepts:
+==============
+  synchronization limitation and alternatives
+
+1 :readwriteLock- Read operation is safe by multiple threads but however synchronization keyword dont allow multiple threads either 
+to read or write.To Overcome this, we have to use more advanced readwriteLock.
+2 : Semaphore-What if we want to allow N threads to enter into synchronized method/block.Java has inbuilt class Semaphore to achive this.
+3: Fairness:Synchronized blocks doesnt gurantee order of thread executing so we can impelement fairness
+4: To achieve synchronization across all jvm,then we need to use other synchronization methods instead of block(need to )
+	
+	
+	
+	
+	
+	
+	
+	
+
+
+
+
+
+

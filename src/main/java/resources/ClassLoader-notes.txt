@@ -1,0 +1,90 @@
+Interview Questions on ClassLoader:
+
+Notes:
+
+1 : In Application container,most of them class-loader will be in reversed order because its parent class loaders will have lot of internal lib.
+2 : Each ear will have its class-loader and each class-loader has its own class-loader.
+3:ClassLoader:Class loaders load class during run-time.
+	loadClass:
+	DefineClass:class loader calls findclass method if it found then it invokes defineclass method to convert arrayofbytes to instanceofclass.
+4 :JVM is runtime,so it always plays only with .class files
+	
+Questions:
+========
+1 : ClassNotFoundException:This is RuntimeException,thrown if class not found during loading class.
+	Example : loadclass method,Class.forName method,findSystemClass method
+	Usually we get this kind of runtime exception in mysql, sql, logs and etc when driverclass is not found while loading
+	
+	code:JDBC trying to load driver class oracleDriver or it can be mysql driver
+	
+public class MainClass
+{
+    public static void main(String[] args)
+    {
+        try
+        {
+            Class.forName("oracle.jdbc.driver.OracleDriver");//if class path dont have this then it throws this exception
+        }catch (ClassNotFoundException e)
+        {
+            e.printStackTrace();
+        }
+    }
+}
+
+
+2 : NoClassDefFoundError:This is error,which is thrown at runtime when jvm tries load defination of the class but defination is not present.
+
+Example :
+class A
+{
+  // some code
+}
+public class B
+{
+    public static void main(String[] args)
+    {
+        A a = new A();
+    }
+}
+when u compile ,it generates 2 .class files.remove A .class and run B class then it throws NoClassDefFoundError.
+
+Reason: 
+This occurs during implict class loading.here when jvm(jvm means always kicks at runtime) trying to load class B,now implictly it is trying to findclass A's Object and define class A's Object by calling defineMethod.if .Class A itself is not found then it throws ClassDefFoundError.
+ClassNotFoundException is basically occured when we are trying t load class explictly by using forName,loadclass methods and etc.
+
+How to solve it?
+Attach Jconsle to ApplicationServer like Jboss
+
+Question 2: Difference between forName and loadClass
+----------
+Class.forName() load and initialize the class. In class loader subsystem it executes all the three phases i.e. load, link, and initialize phases.
+
+ClassLoader.loadClass() behavior, which delays initialization until the class is used for the first time. In class loader subsystem it executes only two phases i.e. load and link phases.
+
+=========
+Question 3:
+NoSuchMethodError :represents a different problem. In this case, the class that we’re referring to exists, but an incorrect version of it is loaded, hence the required method is not found.
+
+Question 4 :mainly during Inhertiance
+ClassCastException:this exception is occured during Inheritance particulary during downcasting
+upcast:happens automatically in java and downcasting is performed by developer
+if u r downcasting Parent Object to child reference then  class cast exception
+Examle :A is base class and B ,C is child class
+
+A a= new B(); //upcasting and no issues
+B b= (B) new A();//downcasting hence issues
+C c= (C)a;//B() is not type of c hence class cast exception
+
+Example : 
+public class ClassCastExceptionDemo
+{
+    public static void main(String[] args)
+    {
+        Object o = new String(); //Onject class is parent class so String class is Upcasted automatically os no problem
+        Integer i = (Integer) o;//downcasting from Object to Integer is castException because Object instance was of String which cannot be casted to Integer
+    }
+}
+
+Question 5 :Changes in classloader in java 8 :nothing
+Question 6 : Changes in class-loader in java 9 : renaming extension-Classloader to PlatformClassloading and bit visibilty of JAVASE and NON JAVASE will be under platform class-loader.
+

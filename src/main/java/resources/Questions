@@ -1,0 +1,17 @@
+1 : program to sort cutom object by comparator ==>compare method and compartor.sort(list,new comparatorObject())
+2 : program to sort custom object by comparable==>comparable in student class itself and override compareto method
+3 : program to sort hashmap by keys
+4 : program to sort hashmap by values for strings
+5 : program to sort hashmp by values for integers
+6 : program to sort hashmap by values as  custom objects as value
+7 : program to sort hashmap by keys for custom objects as value
+8 : program to remove duplicate values from hashmap
+9 : program to avoid duplicate user-defined object as key in hashmap (use hashcode and equals method)
+
+===
+
+Threads Questions
+====
+1 : Deadlock in java example
+2 : prevention of deadlock
+3 : avoid deadlock

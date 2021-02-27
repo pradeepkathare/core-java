@@ -1,0 +1,164 @@
+Garbage Collections
+=================
+		1 : Introduction
+		2 : 4 Ways for making object garbage collection
+			Nullifying the reference variable.
+			Re assigning the reference variable.
+			Objects created inside method
+			Island of isolation
+		3 : The ways for requesting gc
+			By using system class
+			By using Runtime class
+		4 : Finalization
+		
+	Introduction :
+		Gc is best example of Daemon thread.i,e it will be always running in background
+		Gc is used to destroy useless object
+	
+
+	making Object  eligible to gc:
+		Even though the programmer is not responsible to destroy the object.but it is highly recommended to make an object eligible for gc.
+		An object is said to be eligible to gc when it is not referenced by any variable.
+
+		ways are:
+			1 : nullifying reference variable:
+					If an object is not required,then assign null to its reference variable.object automatically becomes gc.
+					example:
+						Student s1 = new Student(); //not eligible for gc
+						 after usuage make s1=null; //eligible for gc.it automatically be gc.most of time we do for connection objects
+			
+			2 : reassign reference to other reference variable:
+					If Object is no longer required then assign its reference variable to any other object then old object will automatically becaomes gc.
+					
+					Student s1 = new Student();
+					Student s2 = new Student();
+					
+					s1=s2; //old s1 object is eligible for gc
+					
+			3 : Objects created inside method :
+					Objects created inside method are by default are eligible for gc.Because reference variables are local variables  within method 
+						once method completes the scope of variables will be ended/destroyed.
+						Example :
+						class Test{
+							psvm(String args[]){
+								m1();
+							}
+							void m1(){
+							Student s1 = new Student(); //this object is eligble to gc after method execution completes.because of s1 is local variable it will destroyed after method execution.
+							return;
+							}
+						}
+						
+						
+					class Test{
+							psvm(String args[]){
+								Student s=m1();
+							}
+							void Student m1(){
+							Student s1 = new Student(); //this object is not eligble to gc after method execution completes.s1 will be destroyed but object is referenced by other variable s.
+							return s1;
+							}
+						}
+				4 : Island of Isolation :
+						
+					class Test{
+						Test t;
+							psvm(String args[]){
+								
+								Test t1 = new Test();
+								Test t2 = new Test();
+								Test t2 = new Test();
+								
+								t1.i=t2;
+								t2.i=t3;
+								t3.i=t1; // instance variable are still pointing to objects
+										
+								t1=null; //no object is gc,becuase t3.i still pointing to t1 object
+								t2=null;//no object is gc,becuase t1.i still pointing to t2
+								t3=null;//all 3 eligble for gc because atlease one outer refernce variable should be there for linking
+								
+							}
+							
+					}
+			
+				NOte :
+					1 : If object doesnt have any reference variable then it eligble for gc.
+					2 :  even though object have reference,Sometimes it may be eligble for gc because those refernces may be internal reference.
+						example : Island of Isolation
+			
+		Ways for requesting gc:
+		------------------------
+			Once we made object to gc,it may not destroy immediately by the gc.whenever jvm runs gc then only object will be destroyed.But we can't expect when jvm runs gc
+			
+			Instead of waiting jvm to run gc,we can request vm to run gc.but it is not gurrantee whether jvm will accept request or not.
+			Ways are:
+			1 : By calling System.gc(); //just System.gc is request to actual gc 
+			2 : Runtime class 
+					A java application can communicate with gc using Runtime class
+					It is present in java.lang package and singleton class.
+					We can use Runtime.getRuntime(); //is called factory method because returns same class object
+					package jvm.core_java;
+				Note : check diff between System.gc and Runtime.gc
+
+public class RuntimeGc {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+		Runtime rt = Runtime.getRuntime();
+		System.out.println("Max memory:"+(rt.maxMemory()/(1024*1024)));
+		System.out.println("freeMemory:"+rt.freeMemory()/(1024*1024));
+		System.out.println("totalMemory:"+rt.totalMemory()/(1024*1024));
+		
+		for(int i=0;i<10000;i++) {
+			Student s1= new Student();
+			s1=null; //important to make null for gc
+		}
+		System.out.println("freeMemory:"+rt.freeMemory()/(1024*1024)); //it might occupied some memory
+		 
+		rt.gc();
+		System.out.println("freeMemory:"+rt.freeMemory()/(1024*1024)); //check difference
+		
+
+	}
+
+}
+
+	Finalize():used only to do clean up but not to destroy object
+		This method is called by gc just before cleaning object.
+		Always gc calls objects particular class finialize method .
+			for example:if String object is eligble for gc then it call finalize method of String class.
+			finalize method is in Object class which all class are sub class internally of it.so we have tp pverride it
+			 
+			If Programmer calls finalize method nd if it throws exception then it is not handled hence program terminates abrutly.
+			If jvm calls then internally exception is ignored and next statement is executed.
+			On Any Object jvm will call finalize method only once even though  that object eliglble twice
+				example :Student s1 = new Student();
+						Student s2=s1;
+						s1= null;
+						System.gc();//1st time
+						s2=null;
+						System.gc(); //no finalize only once finalize method is called
+				
+public class FinalizeDemo {
+
+	public static void main(String[] args) {
+
+		String s1="abcd";
+		s1=null;
+		System.gc(); //only string class finalize method is called not below method.
+		System.out.println("end");
+		
+	}
+
+	//this is called just before gc i,e Test t = new Test();t=null;System.gc();then below is called
+	public void finalize() {
+	//perform clean up activites like closing collection
+		System.out.println("gc of FinalizeDemo");
+	}
+	
+}
+
+
+Memory leaks:If heap memory is full and no object is eligible to gc then outofmemory error will be present
+				
