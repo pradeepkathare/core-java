@@ -1,7 +1,5 @@
 package com.java.muktha.ref;
 
-import java.util.List;
-
 public class JsonParsing {
 
 	public static void main(String[] args) {
@@ -11,10 +9,7 @@ public class JsonParsing {
 
 }
 
-class student{
-	int age;
-	List<Address> list;
-}
+
 
 class Address{
 	

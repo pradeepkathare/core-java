@@ -28,7 +28,7 @@ public class MethodReferences {
 		f2.add();
 
 		//constructor MethodReference
-		Functional f3 = MethodReference();s::new;
+		Functional f3 = MethodReferences::new;
 		f3.add();
 
 	}
@@ -46,5 +46,5 @@ public class MethodReferences {
 @FunctionalInterface
 interface Functional {
 
-	public void add
+	public void add();
 }

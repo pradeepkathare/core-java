@@ -16,7 +16,7 @@ public class CustomObjectSortByComparator {
 		Student s5 = new Student(5, "u");
 		
 		
-		List<Student> list = new ArrayList<>();
+		List<Student> list = new ArrayList();
 		list.add(s1);
 		list.add(s2);
 		list.add(s3);
@@ -45,6 +45,10 @@ class Student{
 	
 	int id;
 	String name;
+	
+	public Student(int id) {
+		this.id = id;
+	}
 	
 	public Student(int id,String name) {
 		this.id=id;

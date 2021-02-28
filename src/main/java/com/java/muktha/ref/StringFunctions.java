@@ -12,10 +12,10 @@ public class StringFunctions {
 		String s ="JAVA";
 		String userName="";
 		
-		System.out.println("username="+userName.isBlank());
+		//System.out.println("username="+userName.isBlank());
 		System.out.println("username="+userName.isEmpty());
 		
-		System.out.println("isBlank= "+s.isBlank());
+		//System.out.println("isBlank= "+s.isBlank());
 		System.out.println("isEmpty= "+s.isEmpty());
 		
 		//length is function in String but observe in array it is field

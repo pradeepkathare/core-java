@@ -1,8 +1,8 @@
 package com.java.muktha.ref;
 
 import java.util.TreeSet;
+import com.java.jvm.Student;
 
-import jvm.core_java.Student;
 
 public class TreeSetSample {
 

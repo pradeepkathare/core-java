@@ -2,8 +2,6 @@ package com.java.collections;
 
 import java.util.TreeSet;
 
-import jvm.core_java.Student;
-
 public class TreeSetSample {
 
 	public static void main(String[] args) {

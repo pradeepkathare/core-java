@@ -1,4 +1,4 @@
-package test;
+package com.java.utils;
 
 /*
  * Pradeep.kathare
@@ -12,7 +12,7 @@ public class StringFunctions {
 
 		String s ="JAVA";
 		
-		System.out.println("isBlank= "+s.isBlank());
+		//System.out.println("isBlank= "+s.isBlank());
 		System.out.println("isEmpty= "+s.isEmpty());
 		
 		//length is function in String but observe in array it is field
