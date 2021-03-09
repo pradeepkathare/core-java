@@ -1,4 +1,4 @@
-package com.java.muktha.ref;
+package com.java.muktha_ref;
 /*
  * sample example for creating LinkedList 
  * following methods are implemented : few more methods are yet to be implemented

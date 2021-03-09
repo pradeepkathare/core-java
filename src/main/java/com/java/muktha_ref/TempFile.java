@@ -1,4 +1,4 @@
-package com.java.muktha.ref;
+package com.java.muktha_ref;
 
 import java.io.File;
 import java.io.IOException;

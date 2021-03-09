@@ -1,4 +1,4 @@
-package com.java.muktha.ref;
+package com.java.muktha_ref;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
