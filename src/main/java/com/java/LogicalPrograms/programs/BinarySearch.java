@@ -1,4 +1,4 @@
-package programming.programs;
+package com.java.LogicalPrograms.programs;
 
 /*
  * In sorted array search given element by dividing array in parts

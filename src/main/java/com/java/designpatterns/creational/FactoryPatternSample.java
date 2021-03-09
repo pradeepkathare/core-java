@@ -1,4 +1,4 @@
-package designpattern.creational;
+package com.java.designpatterns.creational;
 
 
 // FactoryPattern is loose coupling of object  .

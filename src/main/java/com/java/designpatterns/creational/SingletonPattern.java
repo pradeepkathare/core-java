@@ -1,4 +1,4 @@
-package designpattern.creational;
+package com.java.designpatterns.creational;
 
 /*https://howtodoinjava.com/design-patterns/creational/singleton-design-pattern-in-java/
  * Pradeep.k

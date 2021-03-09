@@ -1,4 +1,4 @@
-package programming.programs;
+package com.java.LogicalPrograms.programs;
 
 import java.util.Collection;
 import java.util.HashMap;

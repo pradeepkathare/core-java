@@ -1,4 +1,4 @@
-package designpattern.design.interviewQuestions;
+package com.java.designpatterns.design.interviewQuestions;
 
 /*
  * Pradeep.kathare :

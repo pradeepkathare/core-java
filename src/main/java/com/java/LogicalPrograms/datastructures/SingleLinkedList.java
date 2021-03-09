@@ -1,4 +1,4 @@
-package programming.datastructures;
+package com.java.LogicalPrograms.datastructures;
 
 /*
  * Pradeep.kathare

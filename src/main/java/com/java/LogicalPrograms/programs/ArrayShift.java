@@ -1,4 +1,4 @@
-package programming.programs;
+package com.java.LogicalPrograms.programs;
 
 /*https://www.geeksforgeeks.org/array-rotation/
  * Shift Array without new array

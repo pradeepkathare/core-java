@@ -1,4 +1,4 @@
-package programming.programs;
+package com.java.LogicalPrograms.programs;
 
 /*
  * Finidng subset in java

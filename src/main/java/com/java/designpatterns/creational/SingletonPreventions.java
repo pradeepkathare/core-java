@@ -1,4 +1,4 @@
-package designpattern.creational;
+package com.java.designpatterns.creational;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
