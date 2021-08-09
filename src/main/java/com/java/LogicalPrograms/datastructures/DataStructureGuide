@@ -1,1 +1,19 @@
 https://www.baeldung.com/java-binary-tree
+
+https://www.youtube.com/playlist?list=PL6Zs6LgrJj3tDXv8a_elC6eT_4R5gfX4d
+===
+This guy taught awesome for asympotatic notation:Dinesh
+
+---------
+https://www.youtube.com/watch?v=7h1s2SojIRw : Abdul bari
+
+quick sort : 
+--
+i->lower index should start searcing
+j->higher index
+
+increment i till next element is greater than pivot
+decrement j till next element is smaller than pivot  and 
+now swap a[i] with a[j]
+continue above steps till j<i()
+once both becomes
