@@ -22,6 +22,8 @@ public class _2_Streams_Map {
 		list.add(15);
 		list.add(20);
 		mapInJava8(list);
+
+		
 	}
 
 	private static void mapInJava8(List<Integer> list) {

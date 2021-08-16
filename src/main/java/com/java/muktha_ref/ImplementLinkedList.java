@@ -12,8 +12,6 @@ package com.java.muktha_ref;
  * 7 : remove 
  */
 
-import java.util.LinkedList;
-
 import javax.management.RuntimeErrorException;
 
 public class ImplementLinkedList {
@@ -74,7 +72,7 @@ public class ImplementLinkedList {
 		Node f = first;
 
 		if (f == null) {
-			throw new RuntimeErrorException(null, "unlink first rrror");
+			throw new RuntimeErrorException(null, "unlink first error");
 
 		}
 		Node next = f.next;

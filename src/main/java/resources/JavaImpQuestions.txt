@@ -1,0 +1,247 @@
+
+
+
+
+OOPS Questions: revise this on weekend
+===========
+https://www.javatpoint.com/corejava-interview-questions
+
+1 : what is encapsulation
+2 : what is polymorphism?types and usage of it?
+3 : what is abstraction?when to use it?try to revisse all
+4 : what is interface?
+5 : difference between abstract and interface
+6 : what is variable declared in interface?is it final and static
+7 : what is inheritance
+8 : what is constructor
+9 : what is this,this(),super,super(),final,static
+10 : what is coding at interface ?and how is it implemented?try to relate with polymorphism
+11 : Is java call by value or call by reference
+12 : Explain upcasting and downcasting in java?which casting does java does automatically
+
+
+Exception Handling
+=========
+1 : what is try,catch finally
+2 : throw ,throws
+3 : how to write custom exception class?what u have to implement?
+
+
+Collection Questions
+===========
+Note :Maintain presence of MIND and silence
+==
+1 : Each question u study pictorial representation(like object and reference ).Either u write or find in java t point or beginnersbook or google search
+2 : check methods in arraylist,hashmap,treeMap and etc(study from java t point)
+3 : what is Collection and Collections ?which is interface and which is class ?what all methods are there in class
+4 : In which package collection is present
+5 : will Map comes in Collections??
+6 : Understand which are interface in collection and Map
+
+
+HashMap:
+======
+1 : put string values in hashmap
+2 : put custom objects in hashmap
+3 : sort hashmap for string values
+4 : sort hashmap for custom objects values
+5 : can we add custom object reference as key
+6 : can we sort custom object reference in keys
+7 : how many ways u can iterate values (eg:for each,iterator and any other??)write programs to each iterate
+8 : how hashmap works internally(i will explain)
+
+
+TreeMap:
+========
+1 : what is treeMap?
+2 : difference between hashmap and treeMap
+3 : add  keys as strings  and  values also as string in treeMap
+4 : print treeMap values.check will it print keys in ascending order
+5 : add keys as custom object reference atleast 2 and check any exception
+6 : add keys as string and values as custom object reference and print it.
+7 : will treeMap sort keys or values
+8 : how will u sort treeMap based on values
+
+SET
+====
+1 : what is set?
+2 : what is difference between list and set
+
+HashSet :
+=====
+1 : what is hashset?
+2 : will it allow duplicate elements
+3 : will hashset sort elements
+4 : sort hashset in descending order
+5 : internal implementation of hashset
+
+TreeSet  :
+======== 
+
+1 : what is treeset?
+2 : what is difference between treeset and hashset
+3 : will it allow duplicate elements
+4 : display elements of iterate
+5 : try to add string elements,integer elements and print
+6 : try to add custom objects and run the program,check what exception will u get and find solve to resolve it.
+7 : sort elements in ascending order
+8 : sort elements in descending order?check if any built is present?simplest way to pass comparator during treeset object in constructor 
+9 : sort custom objects and check what u have to implement in custom class?eg : student
+
+List:
+====
+
+ArrayList:
+======
+1 : what is arraylist?
+2 : difference between array and arraylist
+
+LinkedList : 
+=====
+1 : what is LinkedList?
+2 : What is Node in linkedlist? is it class ??
+3 : If LinkedList has Node class?then what all fields it has?
+4 : What is single linked list and double linkedlist
+5 : which is single list and double linked list in java?
+
+Queue :
+--
+1 : what is priority queue
+2 : what id blocking queue
+3 : what is deque
+
+comparable and comparator
+=======
+1 : what is comparable ? is it interface?which method is present in this interface
+2 : what is comparator ? is it interface?which method is present in this interface
+3 : sort  string and custom object using compare and comparator
+4 : difference between comparable and comparator
+5 : when will u use comparable and comparator
+
+MISC in collection:
+============
+0 : Explain basic about synchronization and non-synchronization and then implementation on arraylist
+		note : seperate example without synchronization,concurrentModificationExample and etc
+		https://www.geeksforgeeks.org/synchronization-arraylist-java/
+1 : Explain concurrentModificationExample with and without exception and how to handle it (myself to explore  more)
+		https://www.journaldev.com/378/java-util-concurrentmodificationexception
+2 : what is fail-fast and fail-safe 
+3 : Explain Iterator problem : i,e when iterating object(say arraylist),if someother thread  modifies structure(adding or deleting) on same arraylist Object,
+		then we get conurrentModification exception(refer : ArrayListSynchronization) :
+		1 : To overcome this use either for,forloop to display list 
+		2 : or make iterating method as synchronization when u use Collections.synchronizatedList
+		3 : or use CopyOnwriteArrayList : it gives copy while modfying
+4 : create 2 threads,pass same arraylist object to both threads.In run method of one thread call add method.In 2nd run method ,remove element from the arraylist.?
+	check u get what exception?how to solve this in arraylist.
+
+5 : what is cloning ?write example and print hashcode
+
+Object class
+=======
+1 : what is object class
+2 : what are methods are present in Object class
+3 : Is all class are child of Object class?
+4 : when to override below methods with example
+		a) equals, hashcode ,tostring(),compareto,
+	
+5 : equals and hashcode methods are used by hashmap to compare keys and we need to override while adding user-defined object as key
+6 : Treemap uses compareto method to compare
+	
+Serialization:Mainly focus on state of Object
+===========
+Note : Explain serialization of my git hub example
+
+1 : what is serialization?
+2 : what is deserialization?
+3 : what if i dont want serializae particular field??transient or static or both we can use
+4 : what is serial version in serialization?
+5 : How will u make class as serialziable?
+6 : what is marker interface?is serializable interface is marker?
+7 : when u do deserialization,print hashcode of the object?check the hashcode of object during serialization and deserialization?
+	Is it new object or same object?did jvm create new object and set the value and provided?
+
+key points : Important link 
+=====
+https://www.geeksforgeeks.org/object-serialization-inheritance-java/#:~:text=Serialization%20is%20a%20mechanism%20of,object%20into%20a%20byte%20stream.&text=So%20we%20can%20say%20that,during%20serialization%20in%20this%20case.
+
+1 : If super class implements serialzable,then child class is also serialzable without implementing it
+2 : If a superclass is not serializable then subclass can still be serialized
+3 : If the superclass is serializable but we don’t want the subclass to be serialized : override write and read object and throw exception in child class
+
+
+Threads :
+=======
+1 : deadlock
+2 : producer and consumer problem using 1 )  wait and notify 2) using sempahore 3) using blockingqueue(https://www.java67.com/2015/12/producer-consumer-solution-using-blocking-queue-java.html)
+3 : Blockingqueue is best approach for inter-thread-communication for queue/collections
+4 : countdownlatch :https://www.java67.com/2015/06/java-countdownlatch-example.html
+5 : CyclicBarrier
+
+
+63
+
+In a hypothetical theater:Here, a person is a thread, a play is a resource.
+
+
+
+It is called Mutex if only one person is allowed to watch the play.
+It is called Semaphore if N number of people are allowed to watch the play. 
+If anybody leaves the Theater during the play then other person can be allowed to watch the play.
+It is called CountDownLatch if no one is allowed to enter until every person vacates the theater. 
+Here each person has free will to leave the theater.
+It is called CyclicBarrier if the play will not start until every person enters the theater.
+ Here a showman can not start the show until all the persons enter and grab the seat. 
+ Once the play is finished the same barrier will be applied for next show.
+ 
+ 
+Real World Example I can see that all the answers are actually missing a real example. As in how these classes can be used in a software realm
+CountDownLatch A Multithreaded download manager. The download manager will start multiple threads to download each part of the file simultaneously.(Provided the server supports multiple threads to download). 
+Here each thread will call a countdown method of an instantiated latch. After all the threads have finished execution, the thread associated with the countdown latch will integrate the parts found in the different pieces 
+together into one file
+
+CyclicBarrier Same scenario as above..But assume the files are downloaded from P2P.
+ Again multiple threads downloading the pieces. But here, suppose that you want the intergity check for the 
+ downloaded pieces to be done after a particular time interval. Here cyclic barrier plays an important role.
+  After each time interval, each thread will wait at the barrier so that thread associated with cyclibarrier 
+  can do the integrity check. 
+This integrity check can be done multiple times thanks to CyclicBarrier
+java 8 :
+====
+
+flatmap
+intermediate ,terminal
+Optional.isnull
+parallelstream
+Diamond shape problem
+sort hashmap by customobjects keys and values using java 8
+
+
+
+> http://javahungry.blogspot.com/2013/08/hashing-how-hash-map-works-in-java-or.html
+> http://javahungry.blogspot.com/2014/06/how-treemap-works-ten-treemap-java-interview-questions.html
+> http://javahungry.blogspot.com/2015/02/how-concurrenthashmap-works-in-java-internal-implementation.html
+> http://javahungry.blogspot.com/2015/10/how-treeset-works-internally-in-java-interview-questions.html
+> http://javahungry.blogspot.com/p/threads.html
+> http://javarevisited.blogspot.in/2011/04/synchronization-in-java-synchronized.html
+> http://javarevisited.blogspot.in/2011/06/volatile-keyword-java-example-tutorial.html
+> http://mrbool.com/working-with-java-executor-framework-in-multithreaded-application/27560
+> http://stackoverflow.com/questions/10828863/what-the-use-of-custom-class-loader
+> http://stackoverflow.com/questions/10901752/what-is-the-significance-of-load-factor-in-hashmap
+> http://stackoverflow.com/questions/11011291/treeset-internally-uses-treemap-so-is-it-required-to-implement-hashcode-method
+> http://stackoverflow.com/questions/137975/what-is-so-bad-about-singletons
+> http://stackoverflow.com/questions/13855013/understanding-java-memory-management
+> http://stackoverflow.com/questions/2087469/sort-a-file-with-huge-volume-of-data-given-memory-constraint
+> http://stackoverflow.com/questions/27325997/how-does-countdownlatch-works-in-java
+> http://stackoverflow.com/questions/56860/what-is-the-liskov-substitution-principle
+> http://stackoverflow.com/questions/8161896/example-code-to-show-how-java-synchronized-block-works
+> http://tutorials.jenkov.com/java-concurrency/synchronized.html
+> http://tutorials.jenkov.com/java-util-concurrent/cyclicbarrier.html
+> http://www.dynatrace.com/en/javabook/how-garbage-collection-works.html
+> http://www.oracle.com/webfolder/technetwork/tutorials/obe/java/G1GettingStarted/index.html
+> http://www.programcreek.com/2013/03/hashmap-vs-treemap-vs-hashtable-vs-linkedhashmap/
+> https://docs.oracle.com/cd/E13150_01/jrockit_jvm/jrockit/geninfo/diagnos/garbage_collect.html
+> https://en.m.wikipedia.org/wiki/Creational_pattern
+> https://en.wikipedia.org/wiki/SOLID_(object-oriented_design)
+> https://lostechies.com/derickbailey/2009/02/11/solid-development-principles-in-motivational-pictures/
+> https://scotch.io/bar-talk/s-o-l-i-d-the-first-five-principles-of-object-oriented-design
+

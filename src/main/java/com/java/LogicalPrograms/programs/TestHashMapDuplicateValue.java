@@ -3,6 +3,8 @@ package com.java.LogicalPrograms.programs;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.Map.Entry;
+import java.util.Set;
 
 /*
  * To print duplicate values and  remove duplicate values from hashmap
@@ -24,6 +26,7 @@ public class TestHashMapDuplicateValue {
 		
 		Iterator<Object> itr   = coll.iterator();
 		Iterator<Object> itr1 ;
+		Set<Entry<Object,Object>> entryset = hm.entrySet();
 		
 		String ste = "";
 		while (itr.hasNext()) {

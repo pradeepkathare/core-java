@@ -20,7 +20,6 @@ public class TestThreads  {
 		System.out.println("parent thread in java :"+t1.currentThread().getThreadGroup().getParent());
 		t1.interrupt();
 		System.out.println(t1.getName());
-		
 		//t1.s
 	}
 	

@@ -14,7 +14,7 @@ public class TreeSetSample {
 		
 		System.out.println("TreeSet String values sorted="+treeset);
 		
-		// in angular brackets u can pass primitives datatype like int,long and etc
+		// in angular brackets u cannot pass primitives datatype like int,long and etc
 		TreeSet<Integer> t2 = new TreeSet<Integer>();
 		t2.add(10);
 		t2.add(2);

@@ -33,5 +33,5 @@ public class _2_TypeInference {
 interface StringLengthLambda{
 	
 	int getLength(String s);
-	
+		
 }

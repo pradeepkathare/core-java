@@ -4,7 +4,9 @@ package com.java.threads;
  * DeadLock can be prevented by any one of the below conditions
  * 1 : Mutual Exclusive -->Making all resources shareable() 
  * 
- * 2 : No preemption  3:Hold and Wait 4 : Circular wait
+ * 2 : No preemption  
+ * 3:Hold and Wait 
+ * 4 : Circular wait
  * 
  */
 public class DeadLockPrevention {

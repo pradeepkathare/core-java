@@ -5,6 +5,7 @@ import java.util.Comparator;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
@@ -25,7 +26,8 @@ public class SortHashMapByValues {
 		//sort by value can be achieved by using comparator
 		
 		//sortbyValueforIntegers();
-		sortByValueForString();
+		//sortByValueForString();
+		sortByValueCustomObject();
 	}
 
 	/*
@@ -48,6 +50,7 @@ public class SortHashMapByValues {
 		});
 		System.out.println("after sorting=" + linkedlistOfEntrySet);
 
+		
 		// step 3 :
 		Map<String, Integer> linkedhashmap = new LinkedHashMap<>();
 
@@ -75,6 +78,45 @@ public class SortHashMapByValues {
 		
 		System.out.println("After sorting by value for string="+linkedhashmap);
 	}
+	
+	//custom
+	static void sortByValueCustomObject() {
+		
+		HashMap<String,Student> map = new HashMap<>();
+		Student s1 = new Student(1, "Apradeep");
+		Student s2 = new Student(3, "pradeepK");
+		Student s3 = new Student(2, "bpradeep");
+		map.put("a", s1);
+		map.put("b", s2);
+		map.put("c", s3);
+		
+		//linked-list of entryset
+		
+		LinkedList<Map.Entry<String,Student>> listOfEntry = new LinkedList<>(map.entrySet());
+		
+		Comparator<Map.Entry<String, Student>> c = new Comparator<Map.Entry<String, Student>>() {
+
+			@Override
+			public int compare(Map.Entry<String, Student> e1, Map.Entry<String, Student> e2) {
+				
+				return e1.getValue().getName().compareToIgnoreCase(e2.getValue().getName());
+			}
+		};
+		
+		Collections.sort(listOfEntry, (Entry<String,Student> e1, Entry<String,Student> e2)->{
+			return e1.getValue().getName().compareTo(e2.getValue().getName());
+		});
+		
+		//step 3 : LinkedHashMap
+		LinkedHashMap<String, Student> sortedLinkedHashMap = new LinkedHashMap<>();
+		for(Entry<String,Student> entry:listOfEntry) {
+			sortedLinkedHashMap.put(entry.getKey(), entry.getValue());
+		}
+		System.out.println("After sorting by value for string="+sortedLinkedHashMap);
+		
+	}
+	
+	
 	
 }
 

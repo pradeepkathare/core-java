@@ -1,12 +1,10 @@
 package com.java.collections;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
 import java.util.PriorityQueue;
 
 /*
+ * https://www.geeksforgeeks.org/priority-queue-class-in-java-2/
+ * 
  * priorque : To add elements in prioirityQ it should be comparable 
  * String and other wrapper classes are comparable by default but 
  * user defined class should implement comaparable
@@ -18,6 +16,7 @@ public class TestPriorityQueue {
 		
 		PriorityQueue<Object> pq = new PriorityQueue<>();
 		Employee e1 = new Employee(1, "pradeep");
+		
 		
 		System.out.println("adding priortityy q");
 		pq.add(e1);

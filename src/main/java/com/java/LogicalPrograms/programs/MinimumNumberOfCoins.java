@@ -32,6 +32,7 @@ public class MinimumNumberOfCoins {
 				temp = (sum+input[j]);
 				
 				if (temp <= value) {
+					System.out.println(count);
 					sum = sum + input[j];
 					count++;
 				}

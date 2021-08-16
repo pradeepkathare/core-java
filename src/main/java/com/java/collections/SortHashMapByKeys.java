@@ -1,7 +1,11 @@
 package com.java.collections;
 
 import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Set;
 import java.util.TreeMap;
 
 /*
@@ -23,6 +27,11 @@ public class SortHashMapByKeys {
 		System.out.println("before sorting keys="+hmapasstring.toString());
 		//sort key as string
 		TreeMap<String, String> sortedByKeyAsString = new TreeMap<>(hmapasstring);
+		
+		Set<Entry<String,String>> set = sortedByKeyAsString.entrySet();
+		for(Entry entry:set) {
+			System.out.println(entry.getKey() +""+entry.getValue());
+		}
 		
 		//sortedByKeyAsString.putAll(hmapasstring);
 		for(Map.Entry<String, String> entry:sortedByKeyAsString.entrySet()) {
@@ -66,7 +75,10 @@ public class SortHashMapByKeys {
 		//below can be achieved by comparable as well
 		TreeMap<Student, String> sortedByKeyAsCustomObject = new TreeMap(new StudentComparatorByID());
 		sortedByKeyAsCustomObject.putAll(hashmapCustomObject);
+		
 		System.out.println("after sorting keys as integer="+sortedByKeyAsCustomObject);
+		
+		//try using java 8 lambdas and streams
 		
 	}
 }

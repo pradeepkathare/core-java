@@ -203,7 +203,7 @@ If there is no wating thread or all waiting threads have low priority then same 
 If multiple threads are waiting with same priority then we cannot expect which waiting thread will get the chance
 because it depends on thread scheduler.
 
-When thread call yield methood then it goes to wating state,and thread scheduler will decide which thread to be executed 
+When thread call yield method then it goes to wating state,and thread scheduler will decide which thread to be executed 
 from the waiting list.
 When we have multiple threads of same priority  Thread scheduler  can pick any thread of same priority including currently
 executing thread.
@@ -276,7 +276,7 @@ public void interrupt()
 
 Note : 
 Whenever we are calling interrupt method if the target thread not in sleeping state or waiting state 
-then there is no impact of interrupt call immdeately.Interrupt call will be waited unitl targer thread
+then there is no impact of interrupt call immdeately.Interrupt call will be waited until target thread
 enterd into sleeping or wating state.
 
 If target thread eneterd into sleeping or wating state then immeditely interupt call will interupt target thread and
@@ -455,7 +455,7 @@ wait and notify and notifyall
 		lock  of that object i,e thread should be inside synchronized area.Hence we can call wait,notify and notifyAll methods 
 		only from synchronized area otherwise we will get Runtimeexception saying IllegalMonitorStateException.
 		
-	4 : if a thrad calls wait method on any object it immeditely releass lock of that particular objct and entered into wait state 
+	4 : if a thread calls wait method on any object it immediately release lock of that particular object and entered into wait state 
 	5 : If a thread calls notify method on any object it releases lock of that  object but may not immediately except wait ,notify ,
 	notifyAll there is no other method where thread releases lock.
 		

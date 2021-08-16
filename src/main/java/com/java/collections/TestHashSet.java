@@ -20,9 +20,9 @@ import java.util.LinkedHashSet;
 Incase, you have called iterator on a collection object, and another
 thread tries to modify the collection object, then concurrent modification
 exception will be thrown. This is called fail-fast.
-//concurrent hash map helps for avoidnig fail-fast iterator
+//concurrent hash map helps for avoiding fail-fast iterator
  * )
- * LinkedHashSet maintains insertion ordr and calls linkedhashmap
+ * LinkedHashSet maintains insertion ordr and calls linked-hashmap
  * 
  * HashSet internally implementaion : If we have added 
  * HashSet intrnally calld hashmap to store elements and keys will be object passed and value will be present value;

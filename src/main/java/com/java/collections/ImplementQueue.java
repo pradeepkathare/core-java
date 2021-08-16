@@ -3,8 +3,6 @@ package com.java.collections;
 import java.util.PriorityQueue;
 import java.util.Queue;
 
-import javax.management.RuntimeErrorException;
-
 /*
  * Queue is not thread-safe
  * 1 : Queue xtends collectin so it has all methods of collections

@@ -2,6 +2,7 @@ package com.java.LogicalPrograms.programs;
 
 /*
  * In sorted array search given element by dividing array in parts
+ * O(log n)
  */
 public class BinarySearch {
 
