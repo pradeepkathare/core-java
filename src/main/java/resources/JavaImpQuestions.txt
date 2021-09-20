@@ -245,3 +245,60 @@ sort hashmap by customobjects keys and values using java 8
 > https://lostechies.com/derickbailey/2009/02/11/solid-development-principles-in-motivational-pictures/
 > https://scotch.io/bar-talk/s-o-l-i-d-the-first-five-principles-of-object-oriented-design
 
+
+
+====================Program Interview Questions 
+1 : programs  on collections
+--
+1 : given a string find occurence of each word 
+example : 
+input="I am a java developer and passionate to learn java"
+output : I-1,am-1 ..java-2 
+logic : it will be hashmap with key as word and value as occurence
+
+2 : if they are able to do above then ask them to sort words in asc order
+output : sorted hashmap by key
+example : a-1,am-1 and so on 
+logic : they should convert hashmap to treemap
+
+3 : sort by value  in asc i,e occurences in above code
+Input ->"aa bb aa cc cc "
+output->bb-1,aa-2,cc-1
+logic ->to use comparator
+
+4 : how to check 2 employee/any custom objects are equal
+logic ->
+ e1 = new Employee("pradeep");
+ e2 = new Employee("pradeep");
+ above 2 employee objects are equal assuming equality only on empname
+ 
+ they should override equals and hashcode methods on POJO ,if any other logic is written wont be generic
+ 
+5 :
+https://javarevisited.blogspot.com/2015/01/top-20-string-coding-interview-question-programming-interview.html 
+
+
+How to find largest and smallest number in unsorted array? 
+How to program to print first non repeated word from String? they can use hashmap logic also
+How to reverse String in Java using  Recursion?
+find HighestNumericInString 
+->input :a9d5a232uj999 and output:999
+
+find Length and  largest subarray with contiguous elements?
+Input->{1, 56, 58, 57, 90, 92, 94, 93, 91, 45};
+output->{90,91,92,93,94,95} and length :6
+
+Given an array arr of size n and an integer X. Find if there's a triplet in the array which sums up to the given integer X.
+n = 6, X = 13
+arr[] = [1 4 45 6 10 8]
+Output:
+{1, 4, 8}
+Explanation:
+The triplet {1, 4, 8} in 
+the array sums up to 13.
+(https://practice.geeksforgeeks.org/problems/triplet-sum-in-array-1587115621/1)
+
+
+===WE can Prepare few questions from here for freshers
+->https://www.geeksforgeeks.org/top-50-array-coding-problems-for-interviews/
+https://www.geeksforgeeks.org/top-50-string-coding-problems-for-interviews/
